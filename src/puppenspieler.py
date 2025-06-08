@@ -12,14 +12,12 @@ import bpy
 
 addon_keymaps = []
 key_defs = [
-    ('F2', 'Armrest'),
-    ('F3', 'Backrest'),
-    ('F4', 'Cushion'),
-    ('F5', 'Structure'),
-    ('F6', 'Seat Legs')
+    ('F1', 'Armrest'),
+    ('F2', 'Backrest'),
+    ('F3', 'Cushion'),
+    ('F4', 'Structure'),
+    ('F5', 'Seat Legs')
 ]
-#GROUPS = ["Armrests", "Backrest", "Cushion", "General Structure", "Seat Legs"]
-GROUPS = [group for (key, group) in key_defs]
 
 def get_or_create_empty(name):
     empty = bpy.data.objects.get(name)
@@ -93,8 +91,6 @@ class OBJECT_OT_MoveActiveDown(bpy.types.Operator):
 
 
 class OBJECT_PT_PuppenspielerPanel(bpy.types.Panel):
-#    bl_category = "Tool"
-#    bl_context = ".objectmode"  # dot on purpose (access from topbar)
     bl_label = "Puppenspieler"
     bl_category = 'PACE'
     bl_space_type = 'VIEW_3D'
@@ -110,25 +106,14 @@ class OBJECT_PT_PuppenspielerPanel_groups(bpy.types.Panel):
     bl_parent_id = "OBJECT_PT_PuppenspielerPanel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-#    bl_category = 'Puppenspieler'
 
     def draw(self, context):
         layout = self.layout
         
-        # layout.use_property_split = True
-        # layout.use_property_decorate = False
-        
         box = layout.box()
-#        upper_box.label(text='Groups:')
-        for group in GROUPS:
-            #box = layout.box()
-            #box = upper_box.box()
-            #box.label(text=group)
-            # box.operator("object.add_to_group", icon='ADD', text=group + ' [ ' + key + ' ]').group = group
-            box.operator("object.add_to_group", icon='ADD', text=group).group = group
+        for key, group in key_defs:
+            box.operator("object.add_to_group", icon='ADD', text=' [' + key + '] - ' + group).group = group
 
-        #layout.separator()
-        #layout.label(text="Reorder Selected")
         box.separator()
         box.label(text="Reorder Selected")
         row = box.row()
