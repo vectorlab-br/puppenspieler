@@ -1,7 +1,7 @@
 bl_info = {
     "name": " Puppenspieler",
     "author": "Fabio Nascimento",
-    "version": (1, 3),
+    "version": (0, 7, 4),
     "blender": (3, 0, 0),
     "location": "View3D > Sidebar > Puppenspieler",
     "description": "Manage object hierarchy and order under categorized Empties",
@@ -91,7 +91,7 @@ class OBJECT_OT_MoveActiveDown(bpy.types.Operator):
 
 
 class OBJECT_PT_PuppenspielerPanel(bpy.types.Panel):
-    bl_label = "Puppenspieler"
+    bl_label = "Puppenspieler (v" + '.'.join([str(x) for x in bl_info.get("version")]) + ")"
     bl_category = 'PACE'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
