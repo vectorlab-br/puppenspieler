@@ -131,6 +131,11 @@ class OBJECT_PT_PuppenspielerPanel_groups(bpy.types.Panel):
 # l = bpy.context.scene.cursor.location.copy()
 # bpy.context.selected_objects
 
+##TODO:"
+# - Move selection to under cursor without changing positions
+#   - If an Empty is selected, all other objects should be moved to under it
+# - Move Parent Empty without changing the children position, based on 3D cursor or Selection(?)"
+
 def set_pivot_object_mode(obj):
     bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
     pass
